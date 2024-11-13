@@ -7,6 +7,7 @@ This application allows users to create, manage, and track their tasks with feat
 Here’s a screenshot of the app running:
 
 ![Screenshot (57)](https://github.com/user-attachments/assets/dabb68c7-4aaa-4b19-bda5-c0f6e4340664)
+![Screenshot (59)](https://github.com/user-attachments/assets/0f3bec87-0027-4365-b026-1628c7a8e66d)
 
 ## Features
 - User authentication (Login/Register)
