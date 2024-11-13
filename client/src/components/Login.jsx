@@ -14,13 +14,9 @@ export default function Login() {
     setError(null);
 
     try {
-        
       const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
       });
 
@@ -91,9 +87,14 @@ export default function Login() {
             {loading ? 'Logging in...' : 'Submit'}
           </button>
 
-          <Link to="/createuser" className="btn btn-link w-100 mt-3">
-            I am a new user
-          </Link>
+          <div className="d-flex justify-content-between mt-3">
+            <Link to="/forgot-password" className="btn btn-outline-secondary btn-sm">
+              Forgot Password?
+            </Link>
+            <Link to="/createuser" className="btn btn-outline-secondary btn-sm">
+              I am a new user
+            </Link>
+          </div>
         </form>
       </div>
     </div>

@@ -13,6 +13,8 @@ import OverdueTasks from './components/OverdueTask';
 import CompletedTasks from './components/CompletedTask';
 import AddTask from './components/AddTask';
 import EditTask from './components/EditTask';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 function App() {
   return (
     <Router>
@@ -27,6 +29,8 @@ function App() {
         <Route exact path='/completed-tasks' element={<CompletedTasks></CompletedTasks>}></Route>
         <Route path="/addtask" element={<AddTask />} />
         <Route path="/edittask" element={<EditTask />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         
         </Routes>
         </div>

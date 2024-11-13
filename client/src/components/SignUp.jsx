@@ -102,10 +102,13 @@ export default function Signup() {
           <button type="submit" className="btn btn-primary w-100" disabled={loading}>
             {loading ? 'Loading...' : 'Submit'}
           </button>
+          <div className="d-flex justify-content-center mt-3">
+            <Link to="/login" className="btn btn-outline-secondary btn-sm">
+             Already a user? Log in
+            </Link>
+            
+          </div>
 
-          <Link to="/login" className="btn btn-link w-100 mt-3">
-            Already a user? Log in
-          </Link>
         </form>
       </div>
     </div>
