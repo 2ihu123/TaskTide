@@ -2,6 +2,12 @@
 
 This application allows users to create, manage, and track their tasks with features like prioritization, due dates, and completion tracking.
 
+## Project Overview
+
+Here’s a screenshot of the app running:
+
+![Screenshot (57)](https://github.com/user-attachments/assets/dabb68c7-4aaa-4b19-bda5-c0f6e4340664)
+
 ## Features
 - User authentication (Login/Register)
 - Task management with due dates and priority levels
