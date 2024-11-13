@@ -6,10 +6,10 @@
 ### you've used it.
   In My code, the most useful feature from the latest version is optional chaining (?.). This feature allows you to safely access deeply nested 
   properties of objects without needing to manually check for null or undefined at each level.
-  // Before (without optional chaining):
-   const dueDate = task && task.dueDate ? task.dueDate : 'No due date';
+  - // Before (without optional chaining):
+     const dueDate = task && task.dueDate ? task.dueDate : 'No due date';
    
-  // After (with optional chaining):
+  - // After (with optional chaining):
    const dueDate = task?.dueDate || 'No due date';
 
 ### How would you track down a performance issue in production? Have you ever had to do this?
