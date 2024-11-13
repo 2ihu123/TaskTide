@@ -30,33 +30,29 @@ router.post('/createuser', async (req, res) => {
       });
     }
   });
-router.post('/login', async (req, res) => {
+  router.post('/login', async (req, res) => {
     try {
-      
       const user = await userModel.findOne({ email: req.body.email });
-      console.log(user)
       if (!user) {
-        return res
-          .status(200)
-          .send({ message: "user not found", success: false });
+        return res.status(400).send({ message: 'User not found', success: false });
       }
+  
       const isMatch = await bcrypt.compare(req.body.password, user.password);
       if (!isMatch) {
-        return res
-          .status(200)
-          .send({ message: "Invlid EMail or Password", success: false });
+        return res.status(400).send({ message: 'Invalid email or password', success: false });
       }
-      
-      
-      const token = jwt.sign({ id: user._id }, secretkey, {
-        expiresIn: '24h',
+  
+      // Generate JWT token
+      const token = jwt.sign({ id: user._id, email: user.email }, secretkey, {
+        expiresIn: '24h', 
       });
-      const name=user.name;
-      res.status(200).send({ message: "Login Success", success: true,token,name});
+  
+      // Send the token back to the client
+      res.status(200).send({ message: 'Login successful', success: true, token });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: `Error in Login CTRL ${error.message}` });
+      res.status(500).send({ message: `Error in login: ${error.message}` });
     }
-  }
-);
+  });
+  
 module.exports = router;

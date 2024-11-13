@@ -15,10 +15,12 @@ const OverDueTasks = () => {
   }, [sortOption, searchQuery, priorityFilter]);
 
   const fetchTasks = async () => {
+    const token = localStorage.getItem('token');
     const response = await fetch('http://localhost:5000/api/gettask/overdue', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ email: localStorage.getItem("email") }),
     });
@@ -58,9 +60,11 @@ const OverDueTasks = () => {
 
   const handleCompleteTaskClick = async (taskId) => {
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:5000/api/completetask', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' ,'Authorization': `Bearer ${token}`,},
+
         body: JSON.stringify({ taskId }),
       });
 
@@ -83,9 +87,10 @@ const OverDueTasks = () => {
     const confirmation = window.confirm('Are you sure you want to delete this task?');
     if (confirmation) {
       try {
+        const token = localStorage.getItem('token');
         const response = await fetch('http://localhost:5000/api/deletetask', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json' , 'Authorization': `Bearer ${token}`,},
           body: JSON.stringify({ taskId }),
         });
 
@@ -170,15 +175,15 @@ const OverDueTasks = () => {
                       <small>Due Date: {new Date(task.dueDate).toLocaleDateString('en-GB')}</small>
                     </p>
 
-                    <div className="mt-auto">
+                    <div className="d-flex justify-content-between">
                       <button
-                        className="btn btn-secondary me-2"
+                        className="btn btn-secondary "
                         onClick={() => handleEditTaskClick(task)}
                       >
                         Edit
                       </button>
                       <button
-                        className="btn btn-success me-2"
+                        className="btn btn-success "
                         onClick={() => handleCompleteTaskClick(task._id)}
                       >
                         Complete

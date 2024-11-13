@@ -19,9 +19,10 @@ const UpcomingTasks = () => {
   }, [sortOption, searchQuery, priorityFilter]);
 
   const fetchTasks = async () => {
+    const token = localStorage.getItem('token');
     const response = await fetch('http://localhost:5000/api/gettask/upcoming', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, },
       body: JSON.stringify({ email: localStorage.getItem('email') }),
     });
     const data = await response.json();
@@ -59,9 +60,11 @@ const UpcomingTasks = () => {
 
   const handleCompleteTaskClick = async (taskId) => {
     try {
+        const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:5000/api/completetask', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' , 'Authorization': `Bearer ${token}`,},
+
         body: JSON.stringify({ taskId }),
       });
       const data = await response.json();
@@ -82,9 +85,10 @@ const UpcomingTasks = () => {
     const confirmation = window.confirm('Are you sure you want to delete this task?');
     if (confirmation) {
       try {
+        const token = localStorage.getItem('token');
         const response = await fetch('http://localhost:5000/api/deletetask', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, },
           body: JSON.stringify({ taskId }),
         });
         const data = await response.json();

@@ -20,10 +20,12 @@ const Tasks = () => {
   }, [navigate]);
 
   const fetchTasks = async () => {
+    const token = localStorage.getItem('token');
     const response = await fetch('http://localhost:5000/api/gettask', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ email: localStorage.getItem("email") }),
     });
@@ -53,10 +55,12 @@ const Tasks = () => {
     const confirmation = window.confirm('Are you sure you want to delete this task?');
     if (confirmation) {
       try {
+        const token = localStorage.getItem('token');
         const response = await fetch('http://localhost:5000/api/deletetask', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify({ taskId }),
         });
@@ -76,10 +80,12 @@ const Tasks = () => {
 
   const handleCompleteTaskClick = async (taskId) => {
     try {
+        const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:5000/api/completetask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ taskId }),
       });
@@ -101,8 +107,18 @@ const Tasks = () => {
   };
 
   const isOverdue = (dueDate) => {
-    return new Date(dueDate) < new Date() && !tasks.completed;
+    // Get current date without time
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+  
+    // Get task due date without time
+    const taskDueDate = new Date(dueDate);
+    taskDueDate.setHours(0, 0, 0, 0);
+  
+    // Check if task is overdue
+    return taskDueDate < currentDate;
   };
+  
 
   const filteredTasks = sortTasks(
     tasks.filter((task) => {

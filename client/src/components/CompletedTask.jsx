@@ -10,10 +10,12 @@ const CompletedTasks = () => {
   }, []);
 
   const fetchTasks = async () => {
+    const token = localStorage.getItem('token');
     const response = await fetch('http://localhost:5000/api/gettask/completed', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ email: localStorage.getItem("email") }),
     });
@@ -26,10 +28,12 @@ const CompletedTasks = () => {
     const confirmation = window.confirm('Are you sure you want to delete this task?');
     if (confirmation) {
       try {
+        const token = localStorage.getItem("token")
         const response = await fetch('http://localhost:5000/api/deletetask', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify({ taskId }),
         });
@@ -51,10 +55,12 @@ const CompletedTasks = () => {
 
   const handleRestoreTaskClick = async (taskId) => {
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:5000/api/restoretask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ taskId }),
       });
