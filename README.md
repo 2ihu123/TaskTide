@@ -29,8 +29,8 @@ Here’s a screenshot of the app running:
 - Start the frontend application (npm start)
 - The frontend will be running at http://localhost:3000
 - Create a .env file in the server directory with the following content
-  MONGO_URI=your_mongo_database_url
-  SECRET_KEY=your_secret_key
+  MONGO_URI= mongodb+srv://abhi9161shukla:poonam@cluster0.k0pn8.mongodb.net/?retryWrites=true&w=majority&     appName=Cluster0
+  SECRET_KEY="poonamyadavfrommnnitallahabad20214120"
 
 ### Prerequisites:
 - Node.js (v14 or above)
