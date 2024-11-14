@@ -28,6 +28,9 @@ Here’s a screenshot of the app running:
 - Install the dependencies (npm install)
 - Start the frontend application (npm start)
 - The frontend will be running at http://localhost:3000
+- Create a .env file in the server directory with the following content
+  MONGO_URI=your_mongo_database_url
+  SECRET_KEY=your_secret_key
 
 ### Prerequisites:
 - Node.js (v14 or above)
